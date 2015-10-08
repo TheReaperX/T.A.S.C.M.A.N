@@ -1,8 +1,33 @@
 <div data-role="view" data-title="Today" data-layout="main" data-model="app.todayView" data-show="app.todayView.onShow" data-after-show="app.todayView.afterShow">
     <!-- START_CUSTOM_CODE_todayView -->
+        </div>
+    		<br>
+    		<br>
+    		<br>
+            <div id="warmup" data-role="collapsible" data-inset="true">
+                <h2>WARM UP</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <br>
+                <ul data-role="listview" data-style="inset" data-template="todayViewModelTemplate" data-bind="{ source: todayViewModel.dataSource}" data-pull-to-refresh="true" data-endless-scroll="false">
+    			</ul>
+            </div>
+    		
+    		 <div id="lifts" data-role="collapsible" data-inset="true">
+                <h2>LIFTS</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            </div>
+    		
+    		 <div id="auxiliary" data-role="collapsible" data-inset="true">
+                <h2>AUXILARY</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            </div>
+    	
+    		<div id="notes" data-role="collapsible" data-inset="true">
+                <h2>NOTES</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            </div>
+		</div>	
     <!-- END_CUSTOM_CODE_todayView -->
-    <ul data-role="listview" data-style="inset" data-template="todayViewModelTemplate" data-bind="{ source: todayViewModel.dataSource}" data-pull-to-refresh="true" data-endless-scroll="false">
-    </ul>
     <!-- START_CUSTOM_CODE_todayViewModel -->
     <!-- END_CUSTOM_CODE_todayViewModel -->
     <script type="text/x-kendo-template" id="todayViewModelTemplate">
