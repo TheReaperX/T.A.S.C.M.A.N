@@ -1,4 +1,94 @@
 {
   "type": "kendo-ui-mobile",
-  "isNew": true
+  "views": [
+    {
+      "type": "kendo-ui-mobile:view",
+      "name": "authenticationView",
+      "components": [
+        {
+          "type": "kendo-ui-mobile:authentication",
+          "name": "authenticationViewModel",
+          "dataProvider": "friendsBackend",
+          "emailLabel": "Email",
+          "passwordLabel": "Password",
+          "signinLabel": "Sign In",
+          "signinRedirect": "homeView",
+          "enableRegistration": false
+        }
+      ],
+      "title": "Authentication",
+      "addToNavigation": false
+    },
+    {
+      "type": "kendo-ui-mobile:view",
+      "name": "homeView",
+      "components": [],
+      "title": "Home View",
+      "addToNavigation": true,
+      "icon": "home"
+    },
+    {
+      "type": "kendo-ui-mobile:view",
+      "name": "todayView",
+      "components": [
+        {
+          "type": "kendo-ui-mobile:list",
+          "name": "todayViewModel",
+          "dataProvider": "friendsBackend",
+          "collection": "Activities",
+          "iconField": false,
+          "headerField": "Text",
+          "masterDetails": false,
+          "pullToRefresh": true,
+          "endlessScroll": false
+        }
+      ],
+      "title": "Today",
+      "addToNavigation": true,
+      "icon": "info"
+    },
+    {
+      "type": "kendo-ui-mobile:view",
+      "name": "weekView",
+      "components": [
+        {
+          "type": "kendo-ui-mobile:list",
+          "name": "weekViewModel",
+          "dataProvider": "friendsBackend",
+          "collection": "Activities",
+          "headerField": "Text",
+          "masterDetails": false,
+          "pullToRefresh": true,
+          "endlessScroll": false
+        }
+      ],
+      "title": "Week",
+      "addToNavigation": true,
+      "icon": "organize"
+    },
+    {
+      "type": "kendo-ui-mobile:view",
+      "name": "settingsView",
+      "components": [],
+      "title": "Settings",
+      "addToNavigation": true,
+      "icon": "settings"
+    }
+  ],
+  "dataProviders": [
+    {
+      "type": "kendo-ui-mobile:dataProvider",
+      "name": "friendsBackend",
+      "everliveUrl": "//platform.telerik.com/bs-api/v1/",
+      "title": "Friends / Friends Backend",
+      "source": "everlive",
+      "everliveKey": "oWE63AIYnmEAa0lX",
+      "offlineStorage": true
+    }
+  ],
+  "name": "kendoUiMobileApp",
+  "navigation": "tabstrip",
+  "view": "homeView",
+  "transition": "slide",
+  "skin": "native"
 }
