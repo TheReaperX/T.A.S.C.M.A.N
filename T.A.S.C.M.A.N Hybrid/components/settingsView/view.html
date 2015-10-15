@@ -1,12 +1,13 @@
-<div data-role="view" data-title="Settings" data-layout="main" data-model="app.settingsView" data-show="app.settingsView.onShow" data-after-show="app.settingsView.afterShow">
+<div data-role="view" data-init="mobileListViewEndlessScrolling" ata-title="Settings" data-layout="main" data-model="app.settingsView" data-show="app.settingsView.onShow" data-after-show="app.settingsView.afterShow">
     <!-- START_CUSTOM_CODE_settingsView -->
     <br>
     <br>
     <br>
     <div id="collapsible1" data-role="collapsible" data-inset="true">
         <h2>WARM UP</h2>
-        <ul id="flat-listview"></ul>
-
+        <span class="km-badge km-collapsible-item-badge">0%</span>
+    	<ul id="endless-scrolling" data-style="inset"></ul>
+	
     </div>
 
     <div id="collapsible2" data-role="collapsible" data-inset="true">
@@ -25,3 +26,45 @@
     </div>
     <!-- END_CUSTOM_CODE_settingsView -->
 </div>
+
+<!-- scripts -->
+<script type="text/x-kendo-tmpl" id="endless-scrolling-template">
+        <h5#:ProductName#</h5>
+</script>
+
+<script>
+    function mobileListViewEndlessScrolling() {
+        var dataSource = new kendo.data.DataSource({
+            type: "odata",
+            transport: {
+                read: {
+                    url: "//demos.telerik.com/kendo-ui/service/Northwind.svc/Products"
+                }
+            },
+            schema: {
+                total: function () { return 77; }
+            },
+            sort: {
+                field: "ProductID",
+                dir: "desc"
+            },
+            serverPaging: true,
+            serverSorting: true,
+            pageSize: 50
+        });
+
+        $("#endless-scrolling").kendoMobileListView({
+            dataSource: dataSource,
+            template: $("#endless-scrolling-template").text(),
+            endlessScroll: true
+        });
+    }
+</script>
+<!-- style -->
+<style>
+#endless-scrolling h5 {
+  margin-top: .2em;
+  margin-bottom: .2em;
+}
+</style>
+

@@ -1,4 +1,61 @@
 <div data-role="view" data-title="Today" data-layout="main" data-model="app.todayView" data-show="app.todayView.onShow" data-after-show="app.todayView.afterShow">
     <!-- START_CUSTOM_CODE_todayView -->
+     <div id="collapsible1" data-role="collapsible" data-inset="true">
+        <h2>WARM UP</h2>
+      	<ul data-role="listview" data-source="warmup" data-template="warmup-template" data-style="inset"> </ul>
+	
+    </div>
+
+    <div id="collapsible2" data-role="collapsible" data-inset="true">
+        <h2>LIFTS</h2>
+        <ul data-role="listview" data-source="lifts" data-template="lift-template" data-style="inset"> </ul>
+    </div>
+
+    <div id="collapsible3" data-role="collapsible" data-inset="true">
+        <h2>AUXILARY</h2>
+         <ul data-role="listview" data-source="auxilary" data-template="auxilary-template" data-style="inset"> </ul>
+    </div>
+
+    <div id="collapsible4" data-role="collapsible" data-inset="true">
+        <h2>NOTES</h2>
+         <ul data-role="listview" data-source="notes" data-template="note-template" data-style="inset"> </ul>
+    </div>
+</div>
     <!-- END_CUSTOM_CODE_todayView -->
 </div>
+<!-- scripts -->
+	<!-- Templates -->
+        <script type="text/x-kendo-template" id="warmup-template">
+        #: data #
+        </script>
+		
+		<script type="text/x-kendo-template" id="lift-template">
+        #: data #
+        </script>
+		
+		<script type="text/x-kendo-template" id="auxilary-template">
+        #: data #
+        </script>
+		
+		<script type="text/x-kendo-template" id="note-template">
+        #: data #
+        </script>
+	<!-- Data-->
+        <script>
+        var warmup = new kendo.data.DataSource({ data: [ 1, 2, 3, 4, 5] });
+        </script>
+		
+		<script>
+        var lifts = new kendo.data.DataSource({ data: [ 1, 2, 3, 4, 5] });
+        </script>
+		
+		<script>
+        var auxilary = new kendo.data.DataSource({ data: [ 1, 2, 3, 4, 5] });
+        </script>
+		
+		<script>
+        var notes = new kendo.data.DataSource({ data: [ 1, 2, 3, 4, 5] });
+        </script>
+<!-- end scripts -->
+<!-- style -->
+<!-- end style -->
