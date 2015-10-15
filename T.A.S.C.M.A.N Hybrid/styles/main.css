@@ -107,18 +107,20 @@
 
 
 /* START_CUSTOM_CODE_kendoUiMobileApp */
+
 #kendoUiMobileApp .app-name {
-  width: 127px;
-  height: 119px;
-  margin: 1.5em auto;
-  text-indent: -9999px;
-  background: transparent url(images/logo-tasc.png) no-repeat 0 0;
-  overflow: hidden;
+    width: 127px;
+    height: 119px;
+    margin: 1.5em auto;
+    text-indent: -9999px;
+    background: transparent url(images/logo-tasc.png) no-repeat 0 0;
+    overflow: hidden;
 }
 
 #kendoUiMobileApp.km-flat .km-content {
-  background-color: #fff;
+    background-color: #fff;
 }
+
 
 /* END_CUSTOM_CODE_kendoUiMobileApp */
 

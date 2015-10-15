@@ -1,14 +1,4 @@
 <div data-role="view" data-title="Week" data-layout="main" data-model="app.weekView" data-show="app.weekView.onShow" data-after-show="app.weekView.afterShow">
     <!-- START_CUSTOM_CODE_weekView -->
     <!-- END_CUSTOM_CODE_weekView -->
-    <ul data-role="listview" data-style="inset" data-template="weekViewModelTemplate" data-bind="{ source: weekViewModel.dataSource}" data-pull-to-refresh="true" data-endless-scroll="false">
-    </ul>
-    <!-- START_CUSTOM_CODE_weekViewModel -->
-    <!-- END_CUSTOM_CODE_weekViewModel -->
-    <script type="text/x-kendo-template" id="weekViewModelTemplate">
-        <div class="image-with-text">
-            <h3>#: data['Text'] #</h3>
-
-        </div>
-    </script>
 </div>

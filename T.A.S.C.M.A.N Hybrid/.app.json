@@ -23,26 +23,14 @@
       "type": "kendo-ui-mobile:view",
       "name": "homeView",
       "components": [],
-      "title": "Home View",
+      "title": "Home",
       "addToNavigation": true,
       "icon": "home"
     },
     {
       "type": "kendo-ui-mobile:view",
       "name": "todayView",
-      "components": [
-        {
-          "type": "kendo-ui-mobile:list",
-          "name": "todayViewModel",
-          "dataProvider": "friendsBackend",
-          "collection": "Activities",
-          "iconField": false,
-          "headerField": "Text",
-          "masterDetails": false,
-          "pullToRefresh": true,
-          "endlessScroll": false
-        }
-      ],
+      "components": [],
       "title": "Today",
       "addToNavigation": true,
       "icon": "info"
@@ -50,18 +38,7 @@
     {
       "type": "kendo-ui-mobile:view",
       "name": "weekView",
-      "components": [
-        {
-          "type": "kendo-ui-mobile:list",
-          "name": "weekViewModel",
-          "dataProvider": "friendsBackend",
-          "collection": "Activities",
-          "headerField": "Text",
-          "masterDetails": false,
-          "pullToRefresh": true,
-          "endlessScroll": false
-        }
-      ],
+      "components": [],
       "title": "Week",
       "addToNavigation": true,
       "icon": "organize"
