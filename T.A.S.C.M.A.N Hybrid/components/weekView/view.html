@@ -1,17 +1,64 @@
 <div data-role="view" data-title="Week" data-layout="main" data-model="app.weekView" data-show="app.weekView.onShow" data-after-show="app.weekView.afterShow">
     <!-- START_CUSTOM_CODE_weekView -->
-     <ul data-role="buttongroup" data-select-on="up">
+  		
+        <div class="action-buttons">
+             <a data-role="button" class="km-justified km-primary"  id="prev-week button" style=" align: left; width: 33%;" >Prev Week</a>
+           
+             <a data-role="button" class="km-justified km-primary" id="next-week button"  style=" align: right; width: 33%;">Next Week</a>
+     	</div>
+        
+        <br>
+	
+    <div class="action-buttons">
+         <a data-role="button" class="km-justified km-primary" data-rel="modalview" href="#modalview-login" id="modalview-open-button" style="width: 100%;">Day 1</a>
          <br>
-        <li>Prev Week</li>
-        <li>Next Week</li>
-  	 </ul>
-     <br>
+         <br>
+         <a data-role="button" class="km-justified km-primary" data-rel="modalview" href="#modalview-login" id="modalview-open-button" style="width: 100%;">Day 2</a>
+         <br>
+         <br>
+         <a data-role="button" class="km-justified km-primary" data-rel="modalview" href="#modalview-login" id="modalview-open-button" style="width: 100%;">Day 3</a>
+         <br>
+         <br>
+         <a data-role="button" class="km-justified km-primary" data-rel="modalview" href="#modalview-login" id="modalview-open-button" style="width: 100%;">Day 4</a>
+         <br>
+         <br>
+         <a data-role="button" class="km-justified km-primary" data-rel="modalview" href="#modalview-login" id="modalview-open-button" style="width: 100%;">Day 5</a>
+    </div>
     <!-- END_CUSTOM_CODE_weekView -->
+</div>
+
+<!--Modal popup -->
+<div data-role="modalview" id="modalview-login" style="width: 90%;">
+    <div data-role="header">
+        <div data-role="navbar">
+            <span>October 19, 2015</span>
+            <a data-click="closeModalViewLogin" data-role="button" data-align="right">close</a>
+        </div>
+    </div>
+
+    <ul data-role="listview" data-style="inset">
+        <li><label for="username">Username: <input type="text" id="username" /></label></li>
+        <li><label for="password">Password: <input type="password" id="password" /></label></li>
+    </ul>
+    <div data-role="footer">
+        <div data-role="navbar">
+        </div>
+    </div>
 </div>
 
 <!-- scripts -->
 	<!-- Templates -->
 	<!-- Data -->
+	<script> 
+		   function closeModalViewLogin() {
+               $("#modalview-login").kendoMobileModalView("close");
+            }
+	</script>
 <!-- end scripts -->
 <!-- style -->
+<style type="text/css" media="screen">
+    .action-buttons {
+        margin: 3em;
+    }
+</style>
 <!-- end style -->
