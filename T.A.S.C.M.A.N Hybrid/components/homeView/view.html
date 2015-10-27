@@ -1,4 +1,25 @@
 <div data-role="view" data-title="Home" data-layout="main" data-model="app.homeView" data-show="app.homeView.onShow" data-after-show="app.homeView.afterShow">
     <!-- START_CUSTOM_CODE_homeView -->
+	 <form action="./index.html">
+        <ul data-role="listview" data-style="inset">
+            <li>
+                <label>Sport:
+                    <select id="dropdown" data-value-field="RECORD_ID" data-text-field="SPORT_NAME"
+                                				data-bind="source: sportsDataSource, value: selectedSportId, events: {change: onChange}">
+                       
+                    </select>
+                </label>
+            </li>
+              <li>
+                <label>Phase:
+                    <select id="dropdown2">
+                     
+                    </select>
+                </label>
+            </li>
+        </ul>
+    </form>	
+  	
     <!-- END_CUSTOM_CODE_homeView -->
 </div>
+
