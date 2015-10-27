@@ -1,5 +1,12 @@
 <div data-role="view" data-title="Home" data-layout="main" data-model="app.homeView" data-show="app.homeView.onShow" data-after-show="app.homeView.afterShow">
     <!-- START_CUSTOM_CODE_homeView -->
+     <br/>
+     <br/>
+     <br/>
+     <label > Welcome Nana!</label>
+     <br/>
+     <br/>
+     <br/>
 	 <form action="./index.html">
         <ul data-role="listview" data-style="inset">
             <li>
@@ -12,10 +19,14 @@
             </li>
               <li>
                 <label>Phase:
-                    <select id="dropdown2">
+                    <select id="dropdown2"  data-value-field="RECORD_ID" data-text-field="PHASE_NAME"
+                                				data-bind="source: phaseDataSource, value: selectedPhaseId, events: {change: onChange}">
                      
                     </select>
                 </label>
+            </li>
+           	<li>
+                    <a data-role="button" data-click="navigateToWorkout">Today's workout</a>
             </li>
         </ul>
     </form>	
@@ -23,3 +34,9 @@
     <!-- END_CUSTOM_CODE_homeView -->
 </div>
 
+<script>
+ //var app = new kendo.mobile.Application();
+ function navigateToWorkout() {
+        app.navigate("components/todayView/view.html"); // the url of the remote view
+ }
+</script>
