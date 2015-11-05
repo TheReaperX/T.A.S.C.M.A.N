@@ -1,3 +1,5 @@
+
+
 (function() {
     // store a reference to the application object that will be created
     // later on so that we can use it if need be
@@ -7,12 +9,14 @@
 
     var bootstrap = function() {
         $(function() {
+            
             app.mobileApp = new kendo.mobile.Application(document.body, {
 
                 // you can change the default transition (slide, zoom or fade)
                 transition: 'slide',
+                skin: 'flat',
                 // the application needs to know which view to load first
-                initial: 'components/homeView/view.html',
+                initial: 'components/authenticationView/view.html',
                 statusBarStyle: 'black-translucent'
             });
         });

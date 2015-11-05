@@ -3,7 +3,7 @@
      <br/>
      <br/>
      <br/>
-     <label > Welcome Nana!</label>
+     <label data-align="right"> Welcome Nana!</label>
      <br/>
      <br/>
      <br/>
@@ -25,18 +25,16 @@
                     </select>
                 </label>
             </li>
-           	<li>
-                    <a data-role="button" data-click="navigateToWorkout">Today's workout</a>
-            </li>
         </ul>
     </form>	
+    <br/>
+     <a id="btn" data-role="button" data-click="onClick">Today's Workout!</a>
   	
     <!-- END_CUSTOM_CODE_homeView -->
 </div>
 
 <script>
- //var app = new kendo.mobile.Application();
- function navigateToWorkout() {
-        app.navigate("components/todayView/view.html"); // the url of the remote view
- }
+   function onClick() {
+  			app.mobileApp.navigate('components/todayView/view.html');
+	}
 </script>

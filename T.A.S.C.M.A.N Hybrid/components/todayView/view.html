@@ -1,14 +1,14 @@
-<div data-role="view" data-title="Today" data-layout="main" data-model="app.todayView" data-show="app.todayView.onShow" data-after-show="app.todayView.afterShow">
+<div data-role="view" data-title="Today" data-layout="main" data-model="app.todayView" data-show="app.todayView.onShow" data-after-show="app.todayView.afterShow" data-use-native-scrolling="true">
     <!-- START_CUSTOM_CODE_todayView -->
-   			<div id="collapsible1" data-role="collapsible" data-inset="true">
+   			<div id="collapsible1" data-role="collapsible" data-inset="true" data-expand="reloadWarmUps">
                 <h2>WARM UP</h2>
-                <ul data-role="listview" data-source="warmup" data-template="warmup-template" data-style="inset"> </ul>
+                <ul id="mywarmup" data-role="listview" data-source="warmup" data-template="warmup-template" data-style="inset"> </ul>
 
             </div>
 
-       		 <div id="collapsible2" data-role="collapsible" data-inset="true">
+       		 <div id="collapsible2" data-role="collapsible" data-inset="true" data-expand="reloadLifts">
             	<h2>LIFTS</h2>
-            	<ul data-role="listview" data-source="lifts" data-template="lift-template" data-style="inset"> </ul>
+            	<ul id="mylifts" data-role="listview" data-source="lifts" data-template="lift-template" data-style="inset"> </ul>
        		 </div>
 
             <div id="collapsible3" data-role="collapsible" data-inset="true">
@@ -36,7 +36,13 @@
         </script>
 		
 		<script type="text/x-kendo-template" id="lift-template">
-        #: data #
+         #: EXERCISE_NAME #<br/>
+         <label>Sets: </label>
+         #: SET_QUANTITY # <br/>
+         <label>Reps: </label>
+         #: REPS # <br/>
+         <label>Percent Max: </label>
+         #: PERCENT_MAX #
         </script>
 		
 		<script type="text/x-kendo-template" id="auxilary-template">
@@ -62,15 +68,42 @@
                             type: "GET"
                         }
                     },
+                    filter: { field: "IS_WARMUP", operator: "eq", value: "1" },
                     error: function() { console.log(arguments); }
                 });
 
                 warmup.fetch(); 
-
+				function reloadWarmUps() {
+       				$("#mywarmup").data("kendoMobileListView").dataSource.read();	
+    		    }
         </script>
 		
 		<script>
-        var lifts = new kendo.data.DataSource({ data: [ 1, 2, 3, 4, 5] });
+           var schema = {
+                    data: "",
+                    model: {}
+                };
+
+                var lifts = new kendo.data.DataSource({
+                    autoSync: true,
+                    schema: schema,
+                    transport: {
+                        read: { 
+                            url: "http://unkkbeba62de.nanaarkorful12.koding.io/service/retrieve_worksets.php?wkdayid=21",
+                            dataType: "json", 
+                            type: "GET"
+                        }
+                    },
+                    filter: { field: "IS_WARMUP", operator: "neq", value: "1" },
+                    sort: { field: "ORDER_NUMBER", dir: "asc" },
+                    error: function() { console.log(arguments); }
+                });
+
+                lifts.fetch();
+            	
+             function reloadLifts() {
+       				$("#mylifts").data("kendoMobileListView").dataSource.read();	
+    		 }
         </script>
 		
 		<script>
@@ -80,6 +113,8 @@
 		<script>
         var notes = new kendo.data.DataSource({ data: [ 1, 2, 3, 4, 5] });
         </script>
+		
+		
 <!-- end scripts -->
 <!-- style -->
 <!-- end style -->
