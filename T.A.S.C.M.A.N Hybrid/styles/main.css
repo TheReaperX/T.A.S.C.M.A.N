@@ -121,7 +121,11 @@
     background-color: #fff;
 }
 
-
+#kendoUiMobileApp.km-flat .km-badge {
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    right: 4em;
+}
 /* END_CUSTOM_CODE_kendoUiMobileApp */
 
 

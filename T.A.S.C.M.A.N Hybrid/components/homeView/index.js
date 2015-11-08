@@ -2,7 +2,7 @@
 
 var sportsDataSource = [];
 var phaseDataSource = [];
-var sportID;
+var url;
 
 app.homeView = kendo.observable({
     onShow: function() {},
@@ -11,8 +11,10 @@ app.homeView = kendo.observable({
     phaseDataSource: phaseDataSource,
     selectedSportId: null,
         onChange: function(e) {
-            sportID = $("#dropdown").val();
-    }
+            url= "http://unkkbeba62de.nanaarkorful12.koding.io/service/retrieve_phases.php?sportid=" + $("#dropdown").val();
+            console.log(url);
+    },
+    selectedPhaseId: null
 });
 
 $.ajax({
@@ -21,7 +23,6 @@ $.ajax({
         dataType : "json",
         context: this,
         success: function(data) {
-            console.log(sportID);
             console.log(data);
             app.homeView.set("sportsDataSource", data);
             app.homeView.set("selectedSportId", 0);
@@ -30,12 +31,14 @@ $.ajax({
 
 $.ajax({
         type: 'GET',               
-        url: "http://unkkbeba62de.nanaarkorful12.koding.io/service/retrieve_phases.php?sportid=" + "4",
+        url:url,
         dataType : "json",
         context: this,
         success: function(data) {
             console.log(data);
+            console.log(url);
             app.homeView.set("phaseDataSource", data);
+            app.homeView.set("selectedPhaseId", 0);
         }
 });
 kendo.bind($("select"),app.homeView);

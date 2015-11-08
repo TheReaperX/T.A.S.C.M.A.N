@@ -26,31 +26,35 @@
 <!-- scripts -->
 	<!-- Templates -->
         <script type="text/x-kendo-template" id="warmup-template">
-          #: EXERCISE_NAME #<br/>
-         <label>Sets: </label>
-         #: SET_QUANTITY # <br/>
-         <label>Reps: </label>
-         #: REPS # <br/>
-         <label>Percent Max: </label>
-         #: PERCENT_MAX #
+        <a href="components/homeView/view.html" class="km-listview-link" data-role="listview-link">#: EXERCISE_NAME #
+        #if(IS_SUPERSET != 1){#
+          <br/> (  #: SET_QUANTITY #  x  #: REPS # ) <br/>
+        #}else{#
+        	<span class="km-badge">SS</span>
+           	<br/> (  #: SET_QUANTITY #  x  #: REPS # ) <br/>
+        #}#
+        </a>
         </script>
 		
 		<script type="text/x-kendo-template" id="lift-template">
-         #: EXERCISE_NAME #<br/>
-         <label>Sets: </label>
-         #: SET_QUANTITY # <br/>
-         <label>Reps: </label>
-         #: REPS # <br/>
-         <label>Percent Max: </label>
-         #: PERCENT_MAX #
+             <a href="components/homeView/view.html" class="km-listview-link" data-role="listview-link">#: EXERCISE_NAME #
+       		 #if(IS_SUPERSET != 1){#
+          		<br/> (  #: SET_QUANTITY #  x  #: REPS # ) 
+        	#}else{#
+        		<span class="km-badge">SS</span>
+           		<br/> (  #: SET_QUANTITY #  x  #: REPS # )
+       	    #}#
+            </a>
         </script>
 		
 		<script type="text/x-kendo-template" id="auxilary-template">
-        #: data #
+             <a href="components/homeView/view.html" class="km-listview-link" data-role="listview-link">#: data #
+              </a>
         </script>
 		
 		<script type="text/x-kendo-template" id="note-template">
-        #: data #
+        	 <a href="components/homeView/view.html" class="km-listview-link" data-role="listview-link">#: data #
+              </a>
         </script>
 	<!-- Data-->
         <script>
