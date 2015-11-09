@@ -28,10 +28,10 @@
         <script type="text/x-kendo-template" id="warmup-template">
         <a href="components/homeView/view.html" class="km-listview-link" data-role="listview-link">#: EXERCISE_NAME #
         #if(IS_SUPERSET != 1){#
-          <br/> (  #: SET_QUANTITY #  x  #: REPS # ) <br/>
+          <br/> <strong>(  #: SET_QUANTITY #  x  #: REPS # )</strong> <br/>
         #}else{#
         	<span class="km-badge">SS</span>
-           	<br/> (  #: SET_QUANTITY #  x  #: REPS # ) <br/>
+           	<br/> <strong>(  #: SET_QUANTITY #  x  #: REPS # )</strong> <br/>
         #}#
         </a>
         </script>
@@ -39,10 +39,10 @@
 		<script type="text/x-kendo-template" id="lift-template">
              <a href="components/homeView/view.html" class="km-listview-link" data-role="listview-link">#: EXERCISE_NAME #
        		 #if(IS_SUPERSET != 1){#
-          		<br/> (  #: SET_QUANTITY #  x  #: REPS # ) 
+          		<br/> <strong>(  #: SET_QUANTITY #  x  #: REPS # )</strong> 
         	#}else{#
         		<span class="km-badge">SS</span>
-           		<br/> (  #: SET_QUANTITY #  x  #: REPS # )
+           		<br/><strong> (  #: SET_QUANTITY #  x  #: REPS # )</strong>
        	    #}#
             </a>
         </script>
@@ -56,69 +56,6 @@
         	 <a href="components/homeView/view.html" class="km-listview-link" data-role="listview-link">#: data #
               </a>
         </script>
-	<!-- Data-->
-        <script>
-                var schema = {
-                    data: "",
-                    model: {}
-                };
-
-                var warmup = new kendo.data.DataSource({
-                    schema: schema,
-                    transport: {
-                        read: { 
-                            url: "http://unkkbeba62de.nanaarkorful12.koding.io/service/retrieve_worksets.php?wkdayid=21",
-                            dataType: "json", 
-                            type: "GET"
-                        }
-                    },
-                    filter: { field: "IS_WARMUP", operator: "eq", value: "1" },
-                    error: function() { console.log(arguments); }
-                });
-
-                warmup.fetch(); 
-				function reloadWarmUps() {
-       				$("#mywarmup").data("kendoMobileListView").dataSource.read();	
-    		    }
-        </script>
-		
-		<script>
-           var schema = {
-                    data: "",
-                    model: {}
-                };
-
-                var lifts = new kendo.data.DataSource({
-                    autoSync: true,
-                    schema: schema,
-                    transport: {
-                        read: { 
-                            url: "http://unkkbeba62de.nanaarkorful12.koding.io/service/retrieve_worksets.php?wkdayid=21",
-                            dataType: "json", 
-                            type: "GET"
-                        }
-                    },
-                    filter: { field: "IS_WARMUP", operator: "neq", value: "1" },
-                    sort: { field: "ORDER_NUMBER", dir: "asc" },
-                    error: function() { console.log(arguments); }
-                });
-
-                lifts.fetch();
-            	
-             function reloadLifts() {
-       				$("#mylifts").data("kendoMobileListView").dataSource.read();	
-    		 }
-        </script>
-		
-		<script>
-        var auxilary = new kendo.data.DataSource({ data: [ 1, 2, 3, 4, 5] });
-        </script>
-		
-		<script>
-        var notes = new kendo.data.DataSource({ data: [ 1, 2, 3, 4, 5] });
-        </script>
-		
-		
 <!-- end scripts -->
 <!-- style -->
 <!-- end style -->

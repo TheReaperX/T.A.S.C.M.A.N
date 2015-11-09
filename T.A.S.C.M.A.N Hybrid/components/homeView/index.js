@@ -6,7 +6,8 @@ var url;
 
 app.homeView = kendo.observable({
     onShow: function() {},
-    afterShow: function() {},
+    afterShow: function() {
+    },
     sportsDataSource : sportsDataSource,
     phaseDataSource: phaseDataSource,
     selectedSportId: null,

@@ -1,14 +1,7 @@
-<div data-role="splitview" data-style="horizontal" data-title="Week" data-layout="main" data-model="app.weekView" data-show="app.weekView.onShow" data-after-show="app.weekView.afterShow">
+<div data-role="view" data-title="Week" data-layout="main" data-model="app.weekView" data-show="app.weekView.onShow" data-after-show="app.weekView.afterShow">
     <!-- START_CUSTOM_CODE_weekView -->
- 		   <br/>
-    	   <br/>
-    	   <br/>
-          <div data-role="pane">
-              <div data-role="view" id="foo">Pane 1 </div>
-          </div>
-          <div data-role="pane">
-              <div data-role="view" id="foo">Pane 2 </div>
-          </div>
+ 		<ul id="work_days" data-role="listview" data-source="wkdays" data-template="wkdays-template" data-style="inset"> </ul>  
+    
     <!-- END_CUSTOM_CODE_weekView -->
     
     	
@@ -17,6 +10,10 @@
 
 
 <!-- scripts -->
+  <script type="text/x-kendo-template" id="wkdays-template">
+       <a href="components/todayView/view.html?wkdayid=#: RECORD_ID#" class="km-listview-link" data-role="listview-link">#: WORKOUT_DATE #
+        </a>
+  </script>
 <!-- end scripts -->
 <!-- style -->
 
