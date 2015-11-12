@@ -1,11 +1,14 @@
 'use strict';
 
 app.weekView = kendo.observable({
-    onShow: function() {},
+    onShow: function() {
+        
+    },
     afterShow: function() {}
 });
 
 // START_CUSTOM_CODE_weekView
+
  var schema = {
                     data: "",
                     model: {}
@@ -23,4 +26,35 @@ app.weekView = kendo.observable({
                     error: function() { console.log(arguments); }
                 });
                 wkdays.fetch();
+				//if (wkdays.schema == 0) {
+					//$("#work_days").html('<li>No data found</li>');
+				//}
 // END_CUSTOM_CODE_weekView
+
+
+
+
+/*var vm = kendo.observable({
+   wkdayID: null, 
+   dataSource: new kendo.DataSource( { 
+   transport: {
+    read: {
+       url: 'http://unkkbeba62de.nanaarkorful12.koding.io/service/retrieve_work_days.php?phaseid=21',
+       dataType: "json",
+       type:"GET"
+    }
+    parameterMap: function(options,type) {
+        if (type === 'read') {
+            return {
+               wkdayID: vm.wkdayID
+            };
+        }
+    }
+  })
+});
+
+function viewShow(e) {
+    vm.set("wkdayID", e.view.params.wkdayID);
+    // at this point it is usually a good idea to invoke the datasource read() method.
+    vm.dataSource.read();
+}*/

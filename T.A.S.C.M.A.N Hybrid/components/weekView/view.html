@@ -1,7 +1,7 @@
-<div data-role="view" data-title="Week" data-layout="main" data-model="app.weekView" data-show="app.weekView.onShow" data-after-show="app.weekView.afterShow">
+<div data-role="view" data-title="Week" data-init="barInit" data-layout="main" data-model="app.weekView" data-show="app.weekView.onShow" data-after-show="app.weekView.afterShow">
     <!-- START_CUSTOM_CODE_weekView -->
- 		<ul id="work_days" data-role="listview" data-source="wkdays" data-template="wkdays-template" data-style="inset"> </ul>  
-    
+ 		<ul id="work_days" data-role="listview" data-source="wkdays" data-template="wkdays-template"> </ul>  
+   
     <!-- END_CUSTOM_CODE_weekView -->
     
     	
@@ -11,7 +11,7 @@
 
 <!-- scripts -->
   <script type="text/x-kendo-template" id="wkdays-template">
-       <a href="components/todayView/view.html?wkdayid=#: RECORD_ID#" class="km-listview-link" data-role="listview-link">#: WORKOUT_DATE #
+       <a href="components/todayView/view.html?wkdayid=#: RECORD_ID#&wkdate=#: WORKOUT_DATE#" class="km-listview-link" data-role="listview-link">#: WORKOUT_DATE #
         </a>
   </script>
 <!-- end scripts -->
