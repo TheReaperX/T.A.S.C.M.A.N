@@ -3,24 +3,25 @@
      <br/>
      <br/>
      <br/>
-     <label data-align="right"> Welcome Nana!</label>
+    	<div align="center">
+           <h2>
+         		<label align="center"> Welcome {NAME}!</label>
+           </h2>
+     	</div>
      <br/>
      <br/>
      <br/>
 	 <form action="./index.html">
         <ul data-role="listview" data-style="inset">
             <li>
-                <label>Sport:
-                    <select id="dropdown" data-value-field="RECORD_ID" data-text-field="SPORT_NAME"
-                                				data-bind="source: sportsDataSource, value: selectedSportId, events: {change: onChange}">
-                       
-                    </select>
+                <label>Sport:     
+                        <select id="dropdown" data-model="sport" >
+                        </select>
                 </label>
             </li>
               <li>
                 <label>Phase:
-                    <select id="dropdown2"  data-value-field="RECORD_ID" data-text-field="PHASE_NAME"
-                                				data-bind="source: phaseDataSource, value: selectedPhaseId, events: {change: onChange}">
+                    <select id="dropdown2">
                      
                     </select>
                 </label>
@@ -28,13 +29,16 @@
         </ul>
     </form>	
     <br/>
-     <a id="btn" data-role="button" data-click="onClick">Today's Workout!</a>
-  	
+    <div align="center">
+     	<a id="btn" data-role="button" data-click="onClick">Today's Workout!</a>
+    </div>
     <!-- END_CUSTOM_CODE_homeView -->
 </div>
 
 <script>
+   var todayDate = kendo.toString(kendo.parseDate(new Date()), 'MM/dd/yyyy');
+   console.log(todayDate);
    function onClick() {
-  			app.mobileApp.navigate('components/todayView/view.html');
+  			app.mobileApp.navigate('components/todayView/view.html?currentDate='+ todayDate);
 	}
 </script>

@@ -3,12 +3,14 @@
 var wkdayId;
 var phaseId;
 var wkdate;
+var currentDate;
 //get today's date 
 app.todayView = kendo.observable({
     onShow: function(e) {
         wkdayId = e.view.params.wkdayid;
         wkdate = e.view.params.wkdate;
-        var wkData = {WkdayID:wkdayId,WkDate:wkdate};
+        currentDate= e.view.params.currentDate;
+        var wkData = {WkdayID:wkdayId,WkDate:wkdate,currDate:currentDate};
         phaseId = 0;
         app.todayView.set("PhaseID", phaseId);
         app.todayView.set("Wk_info", wkData);
@@ -43,13 +45,16 @@ app.todayView = kendo.observable({
                         }
                     },
                     filter: { field: "IS_WARMUP", operator: "eq", value: "1" },
+        			change:function(e) {
+                               $("#mywarmup").data("kendoMobileListView").dataSource.read();
+                          },
                     error: function() { console.log(arguments); }
                 });
 
                 warmup.fetch(); 
-				function reloadWarmUps() {
-       				$("#mywarmup").data("kendoMobileListView").dataSource.read();	
-    		    }
+				//function reloadWarmUps() {
+       				//$("#mywarmup").data("kendoMobileListView").dataSource.read();	
+    		    //}
 	
 	//get the data for todays lifts
 		var lifts = new kendo.data.DataSource({
@@ -63,6 +68,9 @@ app.todayView = kendo.observable({
                         }
                     },
                     filter: { field: "IS_WARMUP", operator: "neq", value: "1" },
+            		change:function(e) {
+                               $("#mylifts").data("kendoMobileListView").dataSource.read();
+                          },
                     sort: { field: "ORDER_NUMBER", dir: "asc" },
                     error: function() { console.log(arguments); }
                 });

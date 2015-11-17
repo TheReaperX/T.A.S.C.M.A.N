@@ -8,7 +8,6 @@ app.weekView = kendo.observable({
 });
 
 // START_CUSTOM_CODE_weekView
-
  var schema = {
                     data: "",
                     model: {}
@@ -23,12 +22,16 @@ app.weekView = kendo.observable({
                             type: "GET"
                         }
                     },
+                    change:function(e) {
+                                if(this.wkdays.data().length == 0){
+                                    //custom logic
+                                    $("#work_days").append("<h1>No Workout Days</h1>");
+                                }
+                          },
                     error: function() { console.log(arguments); }
                 });
                 wkdays.fetch();
-				//if (wkdays.schema == 0) {
-					//$("#work_days").html('<li>No data found</li>');
-				//}
+				
 // END_CUSTOM_CODE_weekView
 
 
