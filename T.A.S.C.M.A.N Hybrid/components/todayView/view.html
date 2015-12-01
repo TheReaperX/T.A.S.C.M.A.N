@@ -1,20 +1,18 @@
-<div data-role="view" data-title="Today" data-layout="main" data-model="app.todayView" data-show="app.todayView.onShow" data-after-show="app.todayView.afterShow" data-use-native-scrolling="true">
+<div data-role="view" data-title="Today" data-layout="main" data-model="app.todayView" data-init="onInit" data-before-show="app.todayView.beforeShow" data-show="app.todayView.onShow" data-after-show="app.todayView.afterShow" data-use-native-scrolling="true">
     <!-- START_CUSTOM_CODE_todayView -->
-                <div align="center" data-template="header-template" data-bind="source: Wk_info" >
+                <div id= "head" align="center" data-template="header-template" data-bind="source: Wk_info" >
                    
                 </div>	
-   			<div id="collapsible1" data-role="collapsible" data-inset="true" data-init="initList">
+   			<div id="collapsible1" data-role="collapsible" data-inset="true" >
                     <h2>WARM UP</h2>
-                	<br/>
-                    <ul id="mywarmup" data-role="listview" data-source="warmup" data-template="warmup-template" > </ul> 
+                	<center><div id="nosummaryfound" style="display:none">No Warm Ups!</div></center>
+                	<ul id="mywarmup">  </ul>
             </div>
-
        		 <div id="collapsible2" data-role="collapsible" data-inset="true">
             	<h2>LIFTS</h2>
-                <br/>
-            	<ul id="mylifts" data-role="listview" data-source="lifts" data-template="lift-template" > </ul>
+                 <center><div id="nosummaryfound2" style="display:none">No Lifts!</div></center>
+            	<ul id="mylift" data-role="listview"> </ul>
        		 </div>
-
             <div id="collapsible3" data-role="collapsible" data-inset="true">
                 <h2>AUXILARY</h2>
                  <ul data-role="listview" data-source="auxilary" data-template="auxilary-template" > </ul>
@@ -30,23 +28,25 @@
 <!-- scripts -->
 	<!-- Templates -->
 		<script type="text/x-kendo-template" id="header-template">
-            <h2>${currDate}</h2>
+           #if(typeof WkDate !== 'undefined'){#
+              	<h2>${WkDate}</h2>
+            #}#
         </script>
 
 		<!-- Displays the warmups -->
-        <script type="text/x-kendo-template" id="warmup-template">
-        <a href="components/homeView/view.html" class="km-listview-link" data-role="listview-link">#: EXERCISE_NAME #
-        #if(IS_SUPERSET != 1){#
-          <br/> <strong>(  #: SET_QUANTITY #  x  #: REPS # )</strong> <br/>
-        #}else{#
-        	<span class="km-badge">SS</span>
-           	<br/> <strong>(  #: SET_QUANTITY #  x  #: REPS # )</strong> <br/>
-        #}#
-        </a>
+        <script type="text/x-kendo-template" id="warmup">
+              	  <a href="components/homeView/view.html" class="km-listview-link" data-role="listview-link">#: EXERCISE_NAME #
+                       #if(IS_SUPERSET != 1){#
+                          <br/> <strong>(  #: SET_QUANTITY #  x  #: REPS # )</strong>
+                        #}else{#
+                            <span class="km-badge">SS</span>
+                            <br/> <strong>(  #: SET_QUANTITY #  x  #: REPS # )</strong>
+                        #}#
+                    </a>
         </script>
 		
 		<!-- Displays lifts -->
-		<script type="text/x-kendo-template" id="lift-template">
+		<script type="text/x-kendo-template" id="lift">
              <a href="components/homeView/view.html" class="km-listview-link" data-role="listview-link">#: EXERCISE_NAME #
        		 #if(IS_SUPERSET != 1){#
           		<br/> <strong>(  #: SET_QUANTITY #  x  #: REPS # )</strong> 
@@ -65,6 +65,104 @@
 		<script type="text/x-kendo-template" id="note-template">
         	 <a href="components/homeView/view.html" class="km-listview-link" data-role="listview-link">#: data #
               </a>
+        </script>
+
+		<script>
+            	//webservice base url
+           		var url = "http://unkkbeba62de.nanaarkorful12.koding.io/service/retrieve_worksets.php?wkdayid=";
+            
+            	//reformatted date
+                var reformattedDate = kendo.toString(kendo.parseDate(new Date()),'dd-MMM-yy').toUpperCase();
+                
+                //templates
+                var warmuptemplate = kendo.template($("#warmup").html()); //create warmup template
+            	var lifttemplate = kendo.template($("#lift").html()); // create  lift template
+            	
+            	//workout days data source
+               var workouts = new kendo.data.DataSource({
+                  schema:{data:"",model:{}},
+                    transport: {
+                        read: { 
+                            url:"http://unkkbeba62de.nanaarkorful12.koding.io/service/retrieve_work_days.php?phaseid=" + localStorage.getItem('phaseID'),
+                            dataType: "jsonp"
+                        }
+                    },
+                    filter: { field: "WORKOUT_DATE", operator: "eq", value: reformattedDate },
+                    error: function() { console.log(arguments); },
+                    change: function(e) {
+                        //if length is 0 that means there is no workday today
+                        //reset wkDayID to 0
+                       if(e.items.length==0){
+                           localStorage.setItem('wkDayID',0);
+                       }else{
+                           //if not them check to see if its undefined and set it cause that means it hasnt been touched yet
+                           if(typeof localStorage.getItem('wkDayID') == 'undefined'){
+                               localStorage.setItem('wkDayID',e.items[0].RECORD_ID);
+                           }
+                       }
+                       
+                  }	
+                });
+            	
+            
+            	//warm ups dataSource
+                var mywarmups = new kendo.data.DataSource({
+                  schema:{data:"",model:{}},
+                    transport: {
+                        read: { 
+                            url: url + localStorage.getItem('wkDayID'),
+                            dataType: "jsonp"
+                        }
+                    },
+                    filter: { field: "IS_WARMUP", operator: "eq", value: "1" },
+                    error: function() { console.log(arguments); },
+                    change: function(e) {
+                          $("#mywarmup").html(kendo.render(warmuptemplate, this.view())) // populate the content
+                          
+                          //displays if no data is returned
+                          if (e.items.length == 0) { 
+                                $("#nosummaryfound").attr("style", "display:block");
+                          } else {
+                              $("#nosummaryfound").attr("style", "display:none");
+                          }
+                   }
+                });
+            
+            
+            	
+            	//lifts dataSource
+               var mylifts = new kendo.data.DataSource({
+                  schema:{data:"",model:{}},
+                    transport: {
+                        read: { 
+                            url: url + localStorage.getItem('wkDayID'),
+                            dataType: "jsonp"
+                        }
+                    },
+                    filter: { field: "IS_WARMUP", operator: "neq", value: "1" },
+                    sort: { field: "ORDER_NUMBER", dir: "asc" },
+                    error: function() { console.log(arguments); },
+                    change: function(e) {
+                     $("#mylift").data("kendoMobileListView").refresh();
+                     $("#mylift").html(kendo.render(lifttemplate, this.view())) // populate the content
+                     	
+                   		//displays when no data found
+                       if (e.items.length == 0) {
+                        	$("#nosummaryfound2").attr("style", "display:block");
+                      	} else {
+                           $("#nosummaryfound2").attr("style", "display:none");
+                      	}
+                  }
+                });
+            
+            	
+            
+            	//initialize  the data before the view
+                function onInit() {
+                    mywarmups.fetch(); //read the warmup dataSource
+                    mylifts.fetch(); //read the lift dataSource
+                    workouts.fetch(); // read the workouts for the selected phase
+                }
         </script>
 <!-- end scripts -->
 <!-- style -->

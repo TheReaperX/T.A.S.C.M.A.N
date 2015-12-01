@@ -1,33 +1,11 @@
-<div data-role="view"  data-title="Settings" data-layout="main" data-model="app.settingsView.ViewModel" data-show="app.settingsView.onShow" data-after-show="app.settingsView.afterShow">
+<div data-role="view"  data-title="Report" data-layout="main" data-model="app.settingsView.ViewModel" data-before-show="app.settingsView.beforeShow" data-show="app.settingsView.onShow" data-after-show="app.settingsView.afterShow">
     <!-- START_CUSTOM_CODE_settingsView -->
-   		<br/>
-    	<br/>
-    	<br/>
-		<br/>
-    	<br/>
-    	<br/>
-    	<ul data-role="listview" >
-            <li>
-                <label>Sport:
-                    <select data-bind="source: sportDataSource" data-template = "sport-template">
-                         <!--<option>Red</option>
-   						 <option>Green</option>
-						 <option>Blue</option>	-->	
-                    </select>
-                </label>
-            </li>
-      </ul>
 
- 
     
 </div>
 
 <!-- scripts -->
-    <script id="sport-template" type="text/x-kendo-tmpl">
-           <option>
-           		${SPORT_NAME}
-			</option>
-    </script>
+
 <!-- style -->
 
 

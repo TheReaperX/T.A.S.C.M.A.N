@@ -128,7 +128,18 @@
 }
 /* END_CUSTOM_CODE_kendoUiMobileApp */
 
-
+.km-ios7 .km-view .km-content {
+    background-color: #255C99;
+}
+.km-android .km-view .km-content {
+    background-color: #255C99;
+}
+.km-blackberry .km-view .km-content {
+    background-color: #255C99 ;
+}
+.km-wp .km-view .km-content {
+    background-color: #255C99;
+}
 /*Fix navigation labels*/
 
 #kendoUiMobileApp #navigation-container.km-tabstrip .km-button {

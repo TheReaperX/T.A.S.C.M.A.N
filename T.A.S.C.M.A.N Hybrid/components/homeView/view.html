@@ -1,33 +1,38 @@
-<div data-role="view" data-title="Home" data-layout="main" data-model="app.homeView" data-show="app.homeView.onShow" data-after-show="app.homeView.afterShow">
+<div data-role="view" id="home" data-title="Home" data-layout="main" data-model="vmCA" data-show="app.homeView.onShow" data-after-show="app.homeView.afterShow">
     <!-- START_CUSTOM_CODE_homeView -->
      <br/>
      <br/>
      <br/>
     	<div align="center">
            <h2>
-         		<label align="center"> Welcome {NAME}!</label>
+         		<label align="center"> Welcome Admin!</label>
            </h2>
      	</div>
      <br/>
      <br/>
      <br/>
-	 <form action="./index.html">
-        <ul data-role="listview" data-style="inset">
+	<ul id="myform" data-role="listview" data-style="inset">
             <li>
-                <label>Sport:     
-                        <select id="dropdown" data-model="sport" >
-                        </select>
-                </label>
-            </li>
-              <li>
-                <label>Phase:
-                    <select id="dropdown2">
-                     
+                <label>Select Sport
+                    <select id="sport" 
+                            data-role="dropdownlist"
+                            data-text-field="SPORT_NAME" 
+                            data-value-field="RECORD_ID" 
+                            data-bind="value: sport, source: sportData, events: { change: onChange }">
                     </select>
                 </label>
             </li>
-        </ul>
-    </form>	
+        	 <li>
+                <label>Select Phase
+                    <select id="phase" 
+                            data-role="dropdownlist" 
+                            data-text-field="PHASE_NAME" 
+                            data-value-field="RECORD_ID" 
+                            data-bind="value: phase, source: phaseData, events: { change: onChange }">
+                    </select>
+                </label>
+            </li>
+      </ul>	
     <br/>
     <div align="center">
      	<a id="btn" data-role="button" data-click="onClick">Today's Workout!</a>
@@ -37,8 +42,8 @@
 
 <script>
    var todayDate = kendo.toString(kendo.parseDate(new Date()), 'MM/dd/yyyy');
-   console.log(todayDate);
+   localStorage.setItem('todayDate',todayDate);
    function onClick() {
-  			app.mobileApp.navigate('components/todayView/view.html?currentDate='+ todayDate);
+  			app.mobileApp.navigate('components/todayView/view.html');
 	}
 </script>
