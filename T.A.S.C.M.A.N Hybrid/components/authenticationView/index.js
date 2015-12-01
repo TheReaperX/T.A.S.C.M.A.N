@@ -1,7 +1,10 @@
-'use strict';
-
 app.authenticationView = kendo.observable({
-    onShow: function() {},
+    onShow: function() {
+        localStorage.setItem('sportID',0);
+        localStorage.setItem('phaseID',0);
+        localStorage.setItem('wkDayID',0);
+        localStorage.setItem('userID',0);
+    },
     afterShow: function() {}
 });
 
@@ -79,3 +82,6 @@ app.authenticationView = kendo.observable({
 
 // START_CUSTOM_CODE_authenticationViewModel
 // END_CUSTOM_CODE_authenticationViewModel
+
+
+// END_CUSTOM_CODE_homeView
